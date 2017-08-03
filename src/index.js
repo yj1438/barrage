@@ -40,6 +40,7 @@ Barrage.prototype.start = function () {
     if (this.data && this.data.length > 0) {
       const outItem = this.data.splice(0, 1);
       const useTrack = this.getEmptyTrack();
+      
       console.log(useTrack);
     }
   }, 1000);
