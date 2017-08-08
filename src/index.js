@@ -1,6 +1,7 @@
 import './utils/animationFrame';
 
 import sizeUtil from './utils/size';
+import writeStyle from './utils/writeStyle';
 import BarrgeTrack from './model/BarrageTrack';
 import BarrgeItem from './model/BarrageItem';
 
@@ -29,7 +30,7 @@ const Barrage = function (ele, opt) {
   // 初始化跑道
   this.tracks = new Array(...new Array(this.options.rowCount))
     .map((item, i) => {
-      const barrageItem = new BarrgeTrack(i);
+      const barrageItem = new BarrgeTrack(this, i);
       barrageItem.wrapper = this;
       return barrageItem;
     });
@@ -48,6 +49,8 @@ Barrage.defaultOptions = {
   itemClass: '',              // 弹幕元素 class
   itemMaker: null,            // function 弹幕元素生成器，data 为对象列表时，此项必须 function (item) { this === item }
 };
+
+Barrage.writeStyle = writeStyle;
 
 Barrage.prototype.start = function () {
   const options = this.options;
