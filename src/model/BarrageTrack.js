@@ -24,12 +24,13 @@ BarrageTrack.prototype._getItemFixTop = function () {
   let fixedTop = -(this.height / 2);
   if (options.positionFix) {
     let fix = 0;
-    if (Object.prototype.toString.call(fix) === '[object Array]') {
+    if (Object.prototype.toString.call(options.positionFix) === '[object Array]') {
       fix = randomFromRang(...options.positionFix);
     } else {
       fix = parseFloat(options.positionFix) || 0;
     }
     fixedTop += fix;
+    console.log(fixedTop);
   }
   return top + fixedTop;
 };
@@ -38,20 +39,21 @@ BarrageTrack.prototype.go = function (barrageItem) {
   const ele = barrageItem.ele;
   const options = this.options;
   // 修正高度
-  let positionFix = -(this.height / 2);
-  if (options.positionFix) {
-    let fix = options.positionFix;
-    if (typeof fix === 'string') {
-      fix = parseFloat(fix);
-    }
-    if (typeof fix === 'number') {
-      positionFix += fix;
-    } else if (Object.prototype.toString.call(fix) === '[object Array]') {
-      positionFix += randomFromRang(...fix);
-    }
-  }
+  const fixedTop = this._getItemFixTop();
+  // let positionFix = -(this.height / 2);
+  // if (options.positionFix) {
+  //   let fix = options.positionFix;
+  //   if (typeof fix === 'string') {
+  //     fix = parseFloat(fix);
+  //   }
+  //   if (typeof fix === 'number') {
+  //     positionFix += fix;
+  //   } else if (Object.prototype.toString.call(fix) === '[object Array]') {
+  //     positionFix += randomFromRang(...fix);
+  //   }
+  // }
   // let positionFix = options.positionFix || -(trackHeight / 2);
-  ele.style.top = `${this.top + positionFix}px`;
+  ele.style.top = `${fixedTop}px`;
   this.wrapper.container.appendChild(barrageItem.ele);
   // 跑道长度
   const width = this.wrapper.size.width;
