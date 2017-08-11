@@ -7,10 +7,15 @@
  */
 const BarrageItem = function (text, options) {
   this.options = options;
-  this.ele = this.createElement(text);
+  this.ele = this._createElement(text);
 };
 
-BarrageItem.prototype.createElement = function (text) {
+/**
+ * 生成一个弹幕 dom
+ * @param {any} text 
+ * @returns 
+ */
+BarrageItem.prototype._createElement = function (text) {
   const ele = document.createElement('div');
   ele.classList.add('barrage-item');
   if (this.options.itemClass) {
@@ -30,6 +35,9 @@ BarrageItem.prototype.createElement = function (text) {
   return ele;
 };
 
+/**
+ * 弹幕删除自身
+ */
 BarrageItem.prototype.remove = function () {
   this.ele.parentElement.removeChild(this.ele);
 };

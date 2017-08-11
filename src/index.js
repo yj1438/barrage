@@ -44,6 +44,7 @@ Barrage.defaultOptions = {
   isLoop: false,              // 是否循环播放
   rowCount: 4,                // 行数
   intervalTime: 2,            // 最短两弹幕间隔时间
+  refreshfrequency: 'auto',   // 刷新频率
   speed: 150,                 // 移动速度 px/s
   positionFix: 0,             // 位置修正 纵向位置修正
   itemClass: '',              // 弹幕元素 class

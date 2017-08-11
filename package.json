@@ -1,6 +1,6 @@
 {
   "name": "barrage",
-  "version": "0.0.1",
+  "version": "0.2.1",
   "description": "弹幕插件",
   "main": "index.js",
   "scripts": {
