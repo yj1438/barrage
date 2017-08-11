@@ -1,5 +1,6 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 var config = {
 
   devtool: 'source-map',
@@ -12,8 +13,9 @@ var config = {
   },
 
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js?[hash]',
+    libraryTarget: 'umd',
   },
 
   devServer: {

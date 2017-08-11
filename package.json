@@ -2,10 +2,11 @@
   "name": "barrage",
   "version": "0.2.1",
   "description": "弹幕插件",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "example": "webpack-dev-server --config ./example/webpack.config.js --inline --color --progress"
+    "example": "webpack-dev-server --config ./webpack.config.js --inline --color --progress",
+    "build": "webpack --config ./webpack.config.js --progress && rm ./dist/index.html",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "barrage"
