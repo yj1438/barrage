@@ -1,0 +1,5 @@
+before_deploy:
+  - tnpm install && tnpm run build && tnpm run doc
+options:
+  branch: 'master'
+  dist: '.'

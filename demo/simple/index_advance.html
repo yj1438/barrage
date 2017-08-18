@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>demo</title>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="yes" name="apple-touch-fullscreen"/>
+<meta content="telephone=no,email=no" name="format-detection"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+  }
+  #barrage {
+    height: 40vh;
+    background: #eee;
+    background-image: url(http://www.wallcoo.com/photograph/Tilt-shift_Photography_Wallpapers_II_1920x1200/wallpapers/1280x720/orange_man___tilt_shift.jpg);
+    background-size: cover;
+  }
+  /* itemmaker 自定义样式 */
+  .my-barrage-item {
+    padding: 2px;
+    background-color: rgba(255,255,255,.5);
+    border: 1px solid #eee;
+    border-radius: 6px;
+    line-height: 1.2;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .my-barrage-item.self {
+    font-size: 16px;
+    margin-top: -2px;
+    color: red;
+  }
+  .my-barrage-item .item-user {
+    display: inline-block;
+    padding: 2px;
+    border: 1px solid #aaa;
+    background-color: rgba(255,255,255,.8);
+    border-radius: 6px;
+  }
+  /*  */
+  .input-wrap {
+    margin: 12px 8px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  .input-wrap input {
+    flex: 1;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    margin-right: 8px;
+    padding: 5px;
+    font-size: 16px;
+    outline: none;
+  }
+  .input-wrap button {
+    flex-shrink: 0;
+    width: 68px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    padding: 0;
+    outline: none;
+  }
+  .input-wrap button:hover {
+    background-color: #eee;
+  }
+</style>
+</head>
+<body>
+
+  <div id="barrage"></div>
+  <div class="input-wrap">
+    <input id="input" type="text" value=""/>
+    <button id="publish">来一发</button>
+  </div>
+  <div class="input-wrap">
+    <button id="btn_stop">别弹了</button>
+    <button id="btn_continue">继续弹</button>
+  </div>
+  <div class="input-wrap">
+    点击弹幕让它消失！
+  </div>
+  <div style="height: 120vh"></div>
+
+
+  <script>
+    window.luna = {
+      config: {
+        appId: '@alipay/luna-barrage',
+        appName: '@alipay/luna-barrage'
+      }
+    };
+  </script>
+  <!-- 会在全局变量luna中引入组件barrage -->
+  <script src="../../dist/index.debug.js"></script>
+
+  <script type="text/javascript">
+    var main = {
+      init: function () {
+        console.warn('welcome to barrage example~');
+        // 模拟用户
+        var users = ['小红', '小明', '小李', '小王']
+        /**
+         * 生成随机长度的弹幕文案
+         */
+        function makeTestData(count, char) {
+          var i = count;
+          var data = [];
+          while (i > 0) {
+            // 随机长度
+            var randomSize = Math.ceil(Math.random() * 30);
+            var str = char;
+            while (randomSize > 0) {
+              str += char;
+              randomSize -= 1;
+            }
+            data.push({
+              text: str,
+              type: Math.ceil(Math.random() * 4),
+              user: users[Math.floor(Math.random() * 4)]
+            });
+            i -= 1;
+          }
+          return data;
+        }
+
+        /*
+          data: [],                   // 初始的数据列表
+          isLoop: false,              // 是否循环播放
+          rowCount: 5,                // 行数
+          intervalTime: 2,            // 最短两弹幕间隔时间
+          speed: 150,                 // 移动速度 px/s
+          positionFix: 0,             // 位置修正 纵向位置修正
+          itemClass: '',              // 弹幕元素 class
+          itemMaker: null,            // function 弹幕元素生成器，data 为对象列表时，此项必须 function (item) { this === item }
+          onClickItem: function       // 点击弹幕元素事件
+        */
+        var barrage = new window.luna.barrage('#barrage', {
+          data: makeTestData(20, '😂'),
+          isLoop: true,
+          rowCount: 5,
+          intervalTime: 1,
+          speed: 200,       // 建议不要超过200
+          positionFix: -12,
+          itemClass: 'my-barrage',
+          maxDom: 0,
+          itemMaker: function (itemData) {
+            var html = '<div class="my-barrage-item ' + (itemData.type === 0 ? 'self' : '') + '" >'
+              + '<span class="item-user">' + itemData.user + '</span>'
+              + '<span class="item-type-' + itemData.type + '">' + itemData.text + '</span>'
+              + '</div>'
+            return html;
+          },
+          onClickItem: function (evt) {
+            this.remove();
+          }
+        });
+        // 开启
+        barrage.start();
+        // 模板 15s 后跟进一批数据
+        setTimeout(function () {
+          barrage.append(makeTestData(10, '😱'));
+          // barrage.stop();
+        }, 15000);
+
+        // 实时发弹幕
+        document.getElementById('publish').addEventListener('click', function () {
+          var value = document.getElementById('input').value;
+          if (value) {
+            barrage.publish({
+              text: value,
+              type: 0,
+              user: '自己'
+            });
+          }
+        }, false);
+        // 停止播放
+        document.getElementById('btn_stop').addEventListener('click', function () {
+          barrage.stop();
+        }, false);
+        // 开始播放
+        document.getElementById('btn_continue').addEventListener('click', function () {
+          barrage.start();
+        }, false);
+      }
+    };
+
+    window.AlipayJSBridge ? main.init() : document.addEventListener('AlipayJSBridgeReady', function () {
+      main.init();
+    });
+  </script>
+</body>
+</html>

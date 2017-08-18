@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>demo</title>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="yes" name="apple-touch-fullscreen"/>
+<meta content="telephone=no,email=no" name="format-detection"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+  }
+  #barrage {
+    height: 30vh;
+    background: #eee;
+  }
+  .input-wrap {
+    margin: 12px 8px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  .input-wrap input {
+    flex: 1;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    margin-right: 8px;
+    outline: none;
+  }
+  .input-wrap button {
+    flex-shrink: 0;
+    width: 68px;
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    padding: 0;
+    outline: none;
+  }
+  .input-wrap button:hover {
+    background-color: #eee;
+  }
+</style>
+</head>
+<body>
+
+  <div id="barrage"></div>
+  <div class="input-wrap">
+    <input id="input" type="text" value=""/>
+    <button id="publish">来一发</button>
+  </div>
+
+  <script>
+    window.luna = {
+      config: {
+        appId: '@alipay/luna-barrage',
+        appName: '@alipay/luna-barrage'
+      }
+    };
+  </script>
+  <!-- 会在全局变量luna中引入组件barrage -->
+  <script src="../../dist/index.debug.js"></script>
+
+  <script type="text/javascript">
+    var main = {
+      init: function () {
+        console.warn('welcome to barrage example~');
+
+        /*
+          data: [],                   // 初始的数据列表
+          isLoop: false,              // 是否循环播放
+          rowCount: 4,                // 行数
+          intervalTime: 2,            // 最短两弹幕间隔时间
+          speed: 150,                 // 移动速度 px/s
+          positionFix: 0,             // 位置修正 纵向位置修正
+          itemClass: '',              // 弹幕元素 class
+          itemMaker: null,            // function 弹幕元素生成器，data 为对象列表时，此项必须 function (item) { this === item }
+        */
+        var barrage = new window.luna.barrage('#barrage');
+        // 开启
+        barrage.start();
+
+        // 实时发弹幕
+        document.getElementById('publish').addEventListener('click', function () {
+          var value = document.getElementById('input').value;
+          if (value) {
+            barrage.publish(value);
+          }
+        }, false);
+
+      }
+    };
+
+    window.AlipayJSBridge ? main.init() : document.addEventListener('AlipayJSBridgeReady', function () {
+      main.init();
+    });
+  </script>
+</body>
+</html>
