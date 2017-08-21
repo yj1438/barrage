@@ -1,10 +1,13 @@
 var jsdom = require('jsdom').jsdom;
-global.document = jsdom('<!doctype html><html><body></body></html>');
+var documentHtml = '<!doctype html><html><body>' +
+  '<div id="barrage"></div>' +
+  '</body></html>';
+global.document = jsdom(documentHtml);
 global.window = document.defaultView;
 global.navigator = window.navigator;
 
 // 注入window上的对象
-function propagateToGlobal() {
+function propagateToGlobal () {
   for (var key in window) {
     if (!window.hasOwnProperty(key)) continue;
     if (key in global) continue;
@@ -14,11 +17,12 @@ function propagateToGlobal() {
 propagateToGlobal();
 
 // 注入自己的全局变量
-global.setTimeout = function(callback) {
+global.setTimeout = function (callback) {
   callback && callback();
 };
 global.AlipayJSBridge = {
-  call: function(name, opts, callback) {
+  call: function (name, opts, callback) {
+    // console.log('aa');
     // callback && callback({});
   }
 };
