@@ -36,7 +36,7 @@ BarrageItem.prototype._createElement = function (text) {
   const self = this;
   ele.onclick = function (event) {
     self.options.onClickItem.bind(self)(event);
-  }
+  };
   return ele;
 };
 

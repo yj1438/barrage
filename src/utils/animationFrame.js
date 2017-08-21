@@ -4,7 +4,7 @@
  * 如果没有，用 setTimeout 代替
  * @returns {string} requestAnimationFrame 名称
  */
-function animationFrameClosure() {
+function animationFrameClosure () {
   let lastTime = 0;
   const vendors = ['webkit', 'moz'];
   let x;
@@ -40,7 +40,8 @@ function animationFrameClosure() {
       const currTime = new Date().getTime();
       const timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
       const index = window.setTimeout(() => {
-        callback(currTime + timeToCall);
+        const t = currTime + timeToCall;
+        callback(t);
       }, timeToCall);
       lastTime = currTime + timeToCall;
       return index;

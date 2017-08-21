@@ -1,3 +1,8 @@
 {
-  "extends": "standard"
+  "extends": "standard",
+  "rules": {
+    "semi": [2, "always"],
+    "comma-dangle": [2, "always-multiline"],
+    "no-multi-spaces": [2, { "ignoreEOLComments": true }]
+  }
 }

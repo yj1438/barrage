@@ -1,5 +1,5 @@
 const randomFromRang = require('../utils/randomFromRang');
-const transitionendEvent = require('../utils/transitionendEvent'); 
+const transitionendEvent = require('../utils/transitionendEvent');
 /**
  * 弹幕跑道
  */
@@ -65,11 +65,11 @@ BarrageTrack.prototype.go = function (barrageItem) {
   // 动画结束后删除自身
   const transitionEvent = transitionendEvent();
   if (transitionEvent) {
-    function _endEvtFn() {
+    const endEvtFn = function () {
       ele.remove();
-      ele.removeEventListener(transitionEvent, _endEvtFn, false);  // 销毁事件
-    }
-    ele.addEventListener(transitionEvent, _endEvtFn, false);
+      ele.removeEventListener(transitionEvent, endEvtFn, false);  // 销毁事件
+    };
+    ele.addEventListener(transitionEvent, endEvtFn, false);
   } else {
     // 20 ms 为容错间隔时间
     setTimeout(() => {

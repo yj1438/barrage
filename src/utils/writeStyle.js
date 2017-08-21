@@ -16,6 +16,5 @@ function writeStyle (cssString) {
 
 module.exports = writeStyle;
 
-
 // eg:
 // writeStyle('body{margin-top: 20px}')

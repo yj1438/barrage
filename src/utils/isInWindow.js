@@ -3,7 +3,7 @@
  * @param {htmlElement} ele 
  * @return {boolean} false: 不在，true: 在，undefined: 无此dom 
  */
-function isInWindow(ele) {
+function isInWindow (ele) {
   if (typeof ele === 'object' && ele.nodeType && ele.nodeType === 1) {
     const clientRect = ele.getBoundingClientRect();
     const winHeight = document.documentElement.clientHeight || document.body.clientHeight;

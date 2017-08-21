@@ -1,4 +1,4 @@
-require ('./utils/animationFrame');
+require('./utils/animationFrame');
 const BarrageTrack = require('./model/BarrageTrack');
 const BarrageItem = require('./model/BarrageItem');
 const sizeUtil = require('./utils/size');
@@ -57,7 +57,7 @@ Barrage.defaultOptions = {
   itemClass: '',              // 弹幕元素 class
   maxDom: 0,                  // 同时允许最多的 dom 元素
   itemMaker: null,            // function 弹幕元素生成器，data 为对象列表时，此项必须 function (item) { this === item }
-  onClickItem: function (item) {}
+  onClickItem: function (item) {},
 };
 
 /**
@@ -70,8 +70,8 @@ Barrage.prototype._getEmptyTrack = function () {
   let minConsume = 0;
   for (let i = 0; i < this.tracks.length; i += 1) {
     const track = this.tracks[i];
-    if (track.runningTime < new Date().getTime()
-         && (!minConsume || track.runningTime < minConsume)) {
+    if (track.runningTime < new Date().getTime() &&
+         (!minConsume || track.runningTime < minConsume)) {
       minConsume = track.runningTime;
       index = i;
     }
@@ -96,7 +96,7 @@ Barrage.prototype.start = function () {
     this.intervalIndex = window.requestAnimationFrame(() => {
       animationFrameLoop();
       if (options.maxDom) {
-        const barrageItems =  this.container.querySelectorAll('.barrage-item');
+        const barrageItems = this.container.querySelectorAll('.barrage-item');
         if (barrageItems && barrageItems.length >= options.maxDom) {
           return;
         }
@@ -142,7 +142,7 @@ Barrage.prototype.append = function (dataArr) {
  */
 Barrage.prototype.publish = function (data) {
   this.data = [data, ...this.data];
-}
+};
 
 /**
  * 添加静态方法

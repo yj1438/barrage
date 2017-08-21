@@ -1,7 +1,7 @@
-function getWidth(ele) {
+function getWidth (ele) {
   return ele && ele.offsetWidth;
 }
-function getHeight(ele) {
+function getHeight (ele) {
   return ele && ele.offsetHeight;
 }
 

@@ -2,7 +2,7 @@
  * 获取当前浏览器环境的 transitionEvent 事件
  * @return {string} transitionEvent 事件名称
  */
-function whichTransitionEndEvent() {
+function whichTransitionEndEvent () {
   const el = document.createElement('surface');
   const transitions = {
     'transition': 'transitionend',
@@ -31,4 +31,3 @@ module.exports = whichTransitionEndEvent;
 //   e.removeEventListener(transitionEvent, evtEndFn, false);
 // }
 // transitionEvent && e.addEventListener(transitionEvent, evtEndFn);
-

@@ -19,7 +19,6 @@ global.setTimeout = function(callback) {
 };
 global.AlipayJSBridge = {
   call: function(name, opts, callback) {
-    // console.log('aa');
     // callback && callback({});
   }
 };
@@ -37,7 +36,7 @@ global.expect = chai.expect;
 window.luna = {
   config: {
     appId: '88888888',
-    appCode: 'demo',
-    appName: '我的应用'
+    appCode: 'luna-barrage demo',
+    appName: 'luna 弹幕示例'
   }
 };
