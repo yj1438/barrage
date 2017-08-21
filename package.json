@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git@gitlab.alipay-inc.com:luna-component/luna-barrage.git"
   },
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "files": [
     "dist",
     "src",

@@ -83,7 +83,7 @@ var barrage = new window.luna.barrage('#barrage');
 barrage.start();
 ```
 
-更多用法请见 [demo](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tree/master/demo/index.html)
+更多用法请见 [demo](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tree/master/demo/simple/index.html)
 
 #### 2、综合使用
 
@@ -148,7 +148,7 @@ var barrage = new window.luna.barrage('#barrage', {
 // 开启
 barrage.start();
 ```
-代码示例少相关依赖方法，详情请见 [demo](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tree/master/demo/index_advance.html)
+代码示例少相关依赖方法，详情请见 [demo](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tree/master/demo/advance/index.html)
 
 ### 配置
 
@@ -162,7 +162,7 @@ barrage.start();
 | positionFix | nubmer / array:[min, max] | 0 | 弹幕位置(高度)修正，根据实际情况进行调整。<br/>`number` 可以为负值，相当于弹幕元素 dom 的 `margin-top`。<br/>`[min, max]`，eg：`[-20, 10]`，在这个范围内取随机值。<br/>你想要参差不齐的弹幕，就设置 `[min, max]` 吧 |
 | itemClass | string | '' | 自定义弹幕元素 dom class |
 | maxDom | number | 0 | 最多同时显示的弹幕数 |
-| itemMaker | function (itemData) |  | 自定义弹幕元素的生成方法，`itemData` 为弹幕元素数据。如果不设置默认会将 itemData.toString，参照 [综合用法](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tree/master/demo/index_advance.html) |
+| itemMaker | function (itemData) |  | 自定义弹幕元素的生成方法，`itemData` 为弹幕元素数据。如果不设置默认会将 itemData.toString，参照 [综合用法](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tree/master/demo/advance/index.html) |
 | onClickItem | function (evt) |  | 点击弹幕元素事件<br/>`ent` 为事件对象，<br/>`this`：封装的元素对象，见 `BarrageItem` 方法，`this.ele`：元素 dom |
 
 ### 方法
