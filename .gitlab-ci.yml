@@ -9,5 +9,4 @@ node-4:
     - 'nvm install $NODE_VERSION'
     - 'nvm use $NODE_VERSION && npm install tnpm --registry=http://registry.npm.alibaba-inc.com'
     - 'nvm use $NODE_VERSION && node_modules/.bin/tnpm install'
-    - 'nvm use $NODE_VERSION && node_modules/.bin/tnpm build'
     - 'nvm use $NODE_VERSION && node_modules/.bin/tnpm run ci'

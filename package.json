@@ -30,7 +30,7 @@
     "ci": "npm run lint && npm run test-cov",
     "preversion": "npm run ci",
     "postversion": "git push && git push --tags",
-    "prepublish": "npm run ci && npm run build"
+    "prepublish": "npm run build && npm run ci"
   },
   "devDependencies": {
     "@alipay/qingting-deploy": "^0.3.0",
