@@ -10,7 +10,7 @@ var banner =
 
 var config = {
   entry: {
-    barrage: ['./src/index.js']
+    Barrage: ['./src/index.js']
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

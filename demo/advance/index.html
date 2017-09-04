@@ -142,7 +142,7 @@
           itemMaker: null,            // function 弹幕元素生成器，data 为对象列表时，此项必须 function (item) { this === item }
           onClickItem: function       // 点击弹幕元素事件
         */
-        var barrage = new window.luna.barrage('#barrage', {
+        var barrage = new window.luna.Barrage('#barrage', {
           data: makeTestData(20, '😂'),
           isLoop: true,
           rowCount: 5,
