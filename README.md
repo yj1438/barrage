@@ -49,7 +49,8 @@ table th {
 tnpm install @alipay/luna-barrage --save
 ```
 
-然后在 js 中调用
+js 调用
+
 ``` js
 var Barrage = require('@alipay/luna-barrage');
 ```
@@ -58,13 +59,14 @@ var Barrage = require('@alipay/luna-barrage');
 
 也可以直接引用线上 cdn 地址（版本号 x.x.x 见[TAGS](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tags)）：
 
-* 压缩版：https://as.alipayobjects.com/g/luna-component/luna-barrage/x.x.x/index.js
-* 未压缩版，线上不要使用：https://as.alipayobjects.com/g/luna-component/luna-barrage/x.x.x/index.debug.js
+* 压缩版：https://as.alipayobjects.com/g/luna-component/luna-barrage/0.1.0/index.js
+* 未压缩版：https://as.alipayobjects.com/g/luna-component/luna-barrage/0.1.0/index.debug.js
 
-然后通过 `luna.Barrage` 来调用
+js 调用 `luna.Barrage`
 
 ## 特点
 
+* 无任何依赖
 * 高度自定义性，适用于各种业务场景
 * 性能优，从多方面保证性能优先
   - 基于 css3 动画，absolute 定位后在页面渲染后只绘制一次，不会回流
@@ -165,7 +167,7 @@ barrage.publish({type: 0, user: '我自己', text: '这是我的弹幕'});
 ### 配置
 
 | 参数 | 类型 | 默认值 | 说明 |
-| -- | -- | -- | -- |
+| --- | --- | --- | --- |
 | data | array:any | [] | 弹幕数据初始化列表，在 `start` 后，会自动从中一一取出进行播放 |
 | isLoop | boolean | false | 是否循环播放 |
 | rowCount | number | 4 | 弹幕元素行数，根据自己的区域大小，自行调整 |
