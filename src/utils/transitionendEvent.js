@@ -1,6 +1,12 @@
 /**
  * 获取当前浏览器环境的 transitionEvent 事件
  * @return {string} transitionEvent 事件名称
+ * @example
+ * var transitionEvent = whichTransitionEndEvent();
+ * function evtEndFn () {
+ *   e.removeEventListener(transitionEvent, evtEndFn, false);
+ * }
+ * transitionEvent && e.addEventListener(transitionEvent, evtEndFn);
  */
 function whichTransitionEndEvent () {
   const el = document.createElement('surface');
@@ -23,11 +29,3 @@ function whichTransitionEndEvent () {
 }
 
 module.exports = whichTransitionEndEvent;
-
-// eg: 
-// var transitionEvent = whichTransitionEndEvent();
-// function evtEndFn () {
-//   // ...
-//   e.removeEventListener(transitionEvent, evtEndFn, false);
-// }
-// transitionEvent && e.addEventListener(transitionEvent, evtEndFn);

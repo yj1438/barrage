@@ -2,7 +2,6 @@ require('./utils/animationFrame');
 const BarrageTrack = require('./model/BarrageTrack');
 const BarrageItem = require('./model/BarrageItem');
 const sizeUtil = require('./utils/size');
-const writeStyle = require('./utils/writeStyle');
 const transitionendEvent = require('./utils/transitionendEvent');
 const isInWindow = require('./utils/isInWindow');
 
@@ -147,8 +146,6 @@ Barrage.prototype.publish = function (data) {
 /**
  * 添加静态方法
  */
-// 写本地内联样式
-Barrage.writeStyle = writeStyle;
 // 判断当前环境 animationEvent
 Barrage.transitionendEvent = transitionendEvent;
 

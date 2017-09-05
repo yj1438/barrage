@@ -33,6 +33,8 @@ table th {
 
 ![](https://zos.alipayobjects.com/rmsportal/PrervxyTsoutjmu.jpg)
 
+![](https://gw.alipayobjects.com/zos/rmsportal/vEsoigqOGrYWrrPvZLDF.gif)
+
 [http://site.alipay.net/luna-component/luna-barrage/demo/index.html](http://site.alipay.net/luna-component/luna-barrage/demo/index.html)
 
 ## 引用方法
@@ -47,7 +49,7 @@ tnpm install @alipay/luna-barrage --save
 
 然后在 js 中调用
 ``` js
-var barrage = require('@alipay/luna-barrage');
+var Barrage = require('@alipay/luna-barrage');
 ```
 
 ### 方法 2
@@ -57,15 +59,14 @@ var barrage = require('@alipay/luna-barrage');
 * 压缩版：https://as.alipayobjects.com/g/luna-component/luna-barrage/x.x.x/index.js
 * 未压缩版，线上不要使用：https://as.alipayobjects.com/g/luna-component/luna-barrage/x.x.x/index.debug.js
 
-然后通过 `luna.barrage` 来调用
+然后通过 `luna.Barrage` 来调用
 
 ## 特点
 
-* 无任何依赖，方便使用，兼容任一支持 CSS transition 浏览器
 * 高度自定义性，适用于各种业务场景
 * 性能优，从多方面保证性能优先
-  - 弹幕元素 css3 动画，absolute 定位后在页面渲染后只绘制一次，不会回流
-  - 优先使用 requestAnimationFrame 和 transitionEvent，保证浏览器最好状态的性能支持
+  - 基于 css3 动画，absolute 定位后在页面渲染后只绘制一次，不会回流
+  - 优先使用 requestAnimationFrame 和 transitionEvent，自动降级，保证浏览器最好状态的性能支持
   - 支持限制显示的元素最大数据，弹幕元素跑过后会立即销毁
   - 弹幕区域不在显示视窗内、页面未激活时，会自行停止跑弹幕
 
@@ -78,7 +79,7 @@ var barrage = require('@alipay/luna-barrage');
 ```
 
 ```js
-var barrage = new window.luna.barrage('#barrage');
+var barrage = new window.luna.Barrage('#barrage');
 // 开启
 barrage.start();
 ```
@@ -125,7 +126,7 @@ barrage.start();
 /**
  * 综合使用方法
  */
-var barrage = new window.luna.barrage('#barrage', {
+var barrage = new window.luna.Barrage('#barrage', {
   data: makeTestData(20, '😂'),                 // 初始化数据
   isLoop: true,                                 // 循环滚动
   rowCount: 5,                                  // 弹幕元素行数
@@ -147,6 +148,10 @@ var barrage = new window.luna.barrage('#barrage', {
 });
 // 开启
 barrage.start();
+// 添加一批弹幕，一般用于后台推送滚动的弹幕信息
+barrage.append([{type: 1, user: '小张', text: '这是一条弹幕'}, {type: 1, user: '小张', text: '这是一条弹幕'}]);
+// 即时发布一条弹幕，一般用于当前用户发出显示的弹幕
+barrage.publish({type: 0, user: '我自己', text: '这是我的弹幕'});
 ```
 代码示例少相关依赖方法，详情请见 [demo](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tree/master/demo/advance/index.html)
 
@@ -180,8 +185,7 @@ barrage.start();
 
 ### 静态方法
 
-* `writeStyle`：写(追加)一条内置的 `<style>` 标签样式，eg: `writeStyle('body{margin-top: 20px}')`
-* `transitionendEvent`：获取当前环境的 transitionend 事件名称，eg: `luna.barrage.transitionendEvent()`
+* `transitionendEvent`：获取当前环境的 transitionend 事件名称，eg: `luna.Barrage.transitionendEvent()`
 
 ## API文档
 
