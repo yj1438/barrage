@@ -69,9 +69,9 @@ Barrage.prototype._getEmptyTrack = function () {
   let minConsume = 0;
   for (let i = 0; i < this.tracks.length; i += 1) {
     const track = this.tracks[i];
-    if (track.runningTime < new Date().getTime() &&
-         (!minConsume || track.runningTime < minConsume)) {
-      minConsume = track.runningTime;
+    if (track.runningEndTime < new Date().getTime() &&
+         (!minConsume || track.runningEndTime < minConsume)) {
+      minConsume = track.runningEndTime;
       index = i;
     }
   }
@@ -93,27 +93,32 @@ Barrage.prototype.start = function () {
   const options = this.options;
   const animationFrameLoop = () => {
     this.intervalIndex = window.requestAnimationFrame(() => {
-      animationFrameLoop();
+      let canRun = true;
       if (options.maxDom) {
         const barrageItems = this.container.querySelectorAll('.barrage-item');
         if (barrageItems && barrageItems.length >= options.maxDom) {
-          return;
+          canRun = false;
         }
       }
       if (!isInWindow(this.container)) {
-        return;
+        canRun = false;
       }
-      if (this.data && this.data.length > 0) {
-        const useTrack = this._getEmptyTrack();
-        if (useTrack) {
-          const outItem = this.data.splice(0, 1)[0];
-          const barrageItem = new BarrageItem(outItem, options);
-          useTrack.go(barrageItem);
-          if (this.options.isLoop) {
-            this.data.push(outItem);
-          }
+      const useTrack = this._getEmptyTrack();
+      if (!useTrack) {
+        canRun = false;
+      }
+      if (canRun && this.data && this.data.length > 0) {
+        const outItem = this.data.splice(0, 1)[0];
+        const barrageItem = new BarrageItem(outItem, options);
+        useTrack.go(barrageItem);
+        if (this.options.isLoop) {
+          this.data.push(outItem);
         }
       }
+      // 定义1s的交错时间
+      this.nextTimeoutIndex = window.setTimeout(() => {
+        animationFrameLoop();
+      }, 1000 * Math.random());
     });
   };
   animationFrameLoop();
@@ -124,6 +129,7 @@ Barrage.prototype.start = function () {
  */
 Barrage.prototype.stop = function () {
   window.cancelAnimationFrame(this.intervalIndex);
+  window.clearTimeout(this.nextTimeoutIndex);
   this.hasStart = false;
 };
 
