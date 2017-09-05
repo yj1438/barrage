@@ -31,9 +31,11 @@ table th {
 
 ## 查看 demo
 
-![](https://zos.alipayobjects.com/rmsportal/PrervxyTsoutjmu.jpg)
+![](https://gw.alipayobjects.com/zos/rmsportal/UzRnCcXrnRulGCvgZqeP.png)
 
 ![](https://gw.alipayobjects.com/zos/rmsportal/vEsoigqOGrYWrrPvZLDF.gif)
+
+### demo url
 
 [http://site.alipay.net/luna-component/luna-barrage/demo/index.html](http://site.alipay.net/luna-component/luna-barrage/demo/index.html)
 
@@ -69,6 +71,11 @@ var Barrage = require('@alipay/luna-barrage');
   - 优先使用 requestAnimationFrame 和 transitionEvent，自动降级，保证浏览器最好状态的性能支持
   - 支持限制显示的元素最大数据，弹幕元素跑过后会立即销毁
   - 弹幕区域不在显示视窗内、页面未激活时，会自行停止跑弹幕
+
+
+## API文档
+
+[http://site.alipay.net/luna-component/luna-barrage/docs/index.html](http://site.alipay.net/luna-component/luna-barrage/docs/index.html)
 
 ## 使用方法
 
@@ -127,7 +134,7 @@ barrage.start();
  * 综合使用方法
  */
 var barrage = new window.luna.Barrage('#barrage', {
-  data: makeTestData(20, '😂'),                 // 初始化数据
+  data: [{type: 1, user: '小张', text: '这是一条弹幕'}, {type: 1, user: '小张', text: '这是另外一条弹幕'}],                 // 初始化数据
   isLoop: true,                                 // 循环滚动
   rowCount: 5,                                  // 弹幕元素行数
   intervalTime: 1,                              // 最短两个弹幕间隔时间(s)
@@ -187,6 +194,3 @@ barrage.publish({type: 0, user: '我自己', text: '这是我的弹幕'});
 
 * `transitionendEvent`：获取当前环境的 transitionend 事件名称，eg: `luna.Barrage.transitionendEvent()`
 
-## API文档
-
-[http://site.alipay.net/luna-component/luna-barrage/docs/index.html](http://site.alipay.net/luna-component/luna-barrage/docs/index.html)
