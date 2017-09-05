@@ -44,8 +44,8 @@ describe('barrage', function () {
           + '</div>';
         return html;
       },
-      onClickItem: function (evt) {
-        this.remove();
+      onClickItem: function (evt, item) {
+        item.remove();
       },
     });
   });

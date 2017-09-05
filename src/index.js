@@ -56,7 +56,7 @@ Barrage.defaultOptions = {
   itemClass: '',              // 弹幕元素 class
   maxDom: 0,                  // 同时允许最多的 dom 元素
   itemMaker: null,            // function 弹幕元素生成器，data 为对象列表时，此项必须 function (item) { this === item }
-  onClickItem: function (item) {},
+  onClickItem: function (evt, item) {},
 };
 
 /**

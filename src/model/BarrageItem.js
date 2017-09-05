@@ -35,7 +35,7 @@ BarrageItem.prototype._createElement = function (text) {
   // 事件绑定，在这里直接用 on 来绑定元素事件，保证事件的销毁和元素一致
   const self = this;
   ele.onclick = function (event) {
-    self.options.onClickItem.bind(self)(event);
+    self.options.onClickItem(event, self);
   };
   return ele;
 };

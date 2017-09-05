@@ -158,8 +158,8 @@
               + '</div>'
             return html;
           },
-          onClickItem: function (evt) {
-            this.remove();
+          onClickItem: function (evt, item) {
+            item.remove();
           }
         });
         // 开启
