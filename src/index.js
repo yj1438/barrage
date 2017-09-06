@@ -104,7 +104,7 @@ Barrage.prototype._bindEvent = function () {
  * @return {any} 
  */
 Barrage.prototype.start = function () {
-  if (this.hasStart) {
+  if (this.hasStart === 1) {
     return;
   }
   this.hasStart = 1;
