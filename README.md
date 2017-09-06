@@ -46,8 +46,8 @@ var Barrage = require('@alipay/luna-barrage');
 
 也可以直接引用线上 cdn 地址（版本号 x.x.x 见[TAGS](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tags)）：
 
-* 压缩版：https://as.alipayobjects.com/g/luna-component/luna-barrage/0.1.0/index.js
-* 未压缩版：https://as.alipayobjects.com/g/luna-component/luna-barrage/0.1.0/index.debug.js
+* 压缩版：https://as.alipayobjects.com/g/luna-component/luna-barrage/0.1.1/index.js
+* 未压缩版：https://as.alipayobjects.com/g/luna-component/luna-barrage/0.1.1/index.debug.js
 
 js 调用 `luna.Barrage`
 
