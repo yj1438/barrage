@@ -40,6 +40,9 @@ const Barrage = function (ele, opt) {
       barrageItem.wrapper = this;
       return barrageItem;
     });
+  // 初始化状态 1：进行中；0：人工停止；-1：非人工停止(如：页面压入后台)
+  this.hasStart = -1;
+  this._bindEvent();
 };
 
 /**
@@ -81,6 +84,21 @@ Barrage.prototype._getEmptyTrack = function () {
   return null;
 };
 
+Barrage.prototype._bindEvent = function () {
+  // ant bridge 页面压入后台时停止跑弹幕
+  document.addEventListener('pause', (e) => {
+    if (this.hasStart === 1) {
+      this.stop();
+    }
+  }, false);
+  // 页面恢复运行时开始跑弹幕
+  document.addEventListener('resume', (e) => {
+    if (this.hasStart === -1) {
+      this.start();
+    }
+  }, false);
+};
+
 /**
  * 弹幕开始
  * @return {any} 
@@ -89,7 +107,7 @@ Barrage.prototype.start = function () {
   if (this.hasStart) {
     return;
   }
-  this.hasStart = true;
+  this.hasStart = 1;
   const options = this.options;
   const animationFrameLoop = () => {
     this.intervalIndex = window.requestAnimationFrame(() => {
@@ -127,10 +145,10 @@ Barrage.prototype.start = function () {
 /**
  * 弹幕停止
  */
-Barrage.prototype.stop = function () {
+Barrage.prototype.stop = function (isForPause) {
   window.cancelAnimationFrame(this.intervalIndex);
   window.clearTimeout(this.nextTimeoutIndex);
-  this.hasStart = false;
+  this.hasStart = isForPause ? -1 : 0;
 };
 
 /**
