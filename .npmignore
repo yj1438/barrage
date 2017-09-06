@@ -1,0 +1,13 @@
+node_modules
+coverage
+demo
+dist
+docs
+
+*.log
+
+.editorconfig
+.eslintrc
+.DS_Store
+
+private.token
