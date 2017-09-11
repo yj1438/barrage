@@ -7,9 +7,8 @@ const isInWindow = require('./utils/isInWindow');
 
 /**
  * 弹幕主构造方法
- * @constuctor
- * @param {any} ele 必需项：要绑定的弹幕区域 wrap
- * @param {object} opt 配置参数
+ * @param {string|elementNode} ele 必需项：要绑定的弹幕区域 wrap
+ * @param {object} opt 配置参数，详见使用文档
  */
 const Barrage = function (ele, opt) {
   if (!ele) {
@@ -84,6 +83,11 @@ Barrage.prototype._getEmptyTrack = function () {
   return null;
 };
 
+/**
+ * 绑定事件
+ * 用于在手机钱包 app 中，页面压入后台时停止跑弹幕
+ * @private
+ */
 Barrage.prototype._bindEvent = function () {
   // ant bridge 页面压入后台时停止跑弹幕
   document.addEventListener('pause', (e) => {
@@ -101,7 +105,6 @@ Barrage.prototype._bindEvent = function () {
 
 /**
  * 弹幕开始
- * @return {any} 
  */
 Barrage.prototype.start = function () {
   if (this.hasStart === 1) {
@@ -168,9 +171,9 @@ Barrage.prototype.publish = function (data) {
 };
 
 /**
- * 添加静态方法
+ * 判断当前环境 animationEvent
+ * @static
  */
-// 判断当前环境 animationEvent
 Barrage.transitionendEvent = transitionendEvent;
 
 module.exports = Barrage;

@@ -7,6 +7,7 @@ function getHeight (ele) {
 
 /**
  * 获取dom元素 width height 方法
+ * @private
  * @param {htmlElement} ele 
  * @return {number} 
  */
