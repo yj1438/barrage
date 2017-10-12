@@ -1,0 +1,4 @@
+type: assets
+build:
+  - tnpm i
+  - tnpm run build
