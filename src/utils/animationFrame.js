@@ -1,7 +1,8 @@
 /**
- * requestAnimationFrame 修正方法
- * 获取当前浏览器 requestAnimationFrame 的兼容方法
- * 如果没有，用 setTimeout 代替
+ * requestAnimationFrame 修正方法。
+ * 获取当前浏览器 requestAnimationFrame 的兼容方法，
+ * 如果没有，用 setTimeout 代替。
+ * @private
  * @returns {string} requestAnimationFrame 名称
  */
 function animationFrameClosure () {

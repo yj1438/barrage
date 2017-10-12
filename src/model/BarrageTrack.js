@@ -2,6 +2,7 @@ const randomFromRang = require('../utils/randomFromRang');
 const transitionendEvent = require('../utils/transitionendEvent');
 /**
  * 弹幕跑道
+ * @private
  */
 const BarrageTrack = function (barrage, i) {
   this.wrapper = barrage.container;
@@ -16,6 +17,7 @@ const BarrageTrack = function (barrage, i) {
 
 /**
  * 获取跑道的的额定 top
+ * @private
  * @return {number} 跑道的初步位置(高度)
  */
 BarrageTrack.prototype._getTop = function () {
@@ -25,6 +27,7 @@ BarrageTrack.prototype._getTop = function () {
 
 /**
  * 在跑道额定 top 的基础上，进行 top 修正
+ * @private
  * @return {number} 跑道的修正位置(高度)
  */
 BarrageTrack.prototype._getItemFixTop = function () {
@@ -45,6 +48,7 @@ BarrageTrack.prototype._getItemFixTop = function () {
 
 /**
  * 某一弹幕元素起跑
+ * @private
  * @param {any} barrageItem 
  */
 BarrageTrack.prototype.go = function (barrageItem) {
@@ -87,6 +91,7 @@ BarrageTrack.prototype.go = function (barrageItem) {
 
 /**
  * 获取 barrage 配置项
+ * @private
  * @return {object} options 配置 
  */
 BarrageTrack.prototype.getOptions = function () {

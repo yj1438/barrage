@@ -1,6 +1,6 @@
 /**
  * 在一范围内取一随机数
- * @export
+ * @private
  * @param {float} from 范围起始值
  * @param {float} to 范围终止值
  * @return {float} 随机得出的数值

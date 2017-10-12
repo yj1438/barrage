@@ -1,5 +1,6 @@
 /**
  * 弹幕元素对象
+ * @private
  * @param {any} data 元素数据，简单情况下是字符串 
  * @param {object} options 相关配置
  *        itemClass: 元素对象的自定义 class
@@ -12,6 +13,7 @@ const BarrageItem = function (text, options) {
 
 /**
  * 生成一个弹幕 dom
+ * @private
  * @param {any} text item 数据
  * @return {element} barrage item html element
  */
@@ -41,7 +43,8 @@ BarrageItem.prototype._createElement = function (text) {
 };
 
 /**
- * 弹幕删除自身
+ * 弹幕元素删除自身。
+ * @private
  */
 BarrageItem.prototype.remove = function () {
   this.ele.parentElement.removeChild(this.ele);

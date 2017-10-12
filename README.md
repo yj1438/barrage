@@ -151,10 +151,10 @@ barrage.publish({type: 0, user: '我自己', text: '这是我的弹幕'});
 | intervalTime | number | 2 | 前后两个弹幕最短间隔时间(s) |
 | speed | number | 150 | 弹幕行进速度(px/s)，建议不要超过200 |
 | positionFix | number / array:[min, max] | 0 | 弹幕位置(高度)修正，根据实际情况进行调整。<br/>`number` 可以为负值，相当于弹幕元素 dom 的 `margin-top`。<br/>`[min, max]`，eg：`[-20, 10]`，在这个范围内取随机值。<br/>你想要参差不齐的弹幕，就设置 `[min, max]` 吧 |
-| itemClass | string | '' | 自定义弹幕元素 dom class<br/>`0`为不限制 |
-| maxDom | number | 0 | 最多同时显示的弹幕数 |
+| itemClass | string | '' | 自定义弹幕元素 dom class |
+| maxDom | number | 0 | 最多同时显示的弹幕数<br/>`0`为不限制 |
 | itemMaker | function (itemData) |  | 自定义弹幕元素的生成方法，`itemData` 为弹幕元素数据。如果不设置默认会将 itemData.toString，参照 [综合用法](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tree/master/demo/advance/index.html) |
-| onClickItem | function (evt, item) |  | 点击弹幕元素事件<br/>`evt`：事件对象，<br/>`item`：封装的元素对象，见 `BarrageItem` 方法<br/>`item.ele`：元素 dom |
+| onClickItem | function (evt, item) |  | 点击弹幕元素事件<br/>`evt`：事件对象，<br/>`item`：封装的元素对象，见 `BarrageItem` 方法<br/>`item.ele`：元素 dom<br/>`remove`：销毁自己 |
 
 ### 方法
 
@@ -164,10 +164,6 @@ barrage.publish({type: 0, user: '我自己', text: '这是我的弹幕'});
 * `stop`：停止滚动弹幕，已经出现的弹幕不会立即消失，只是不再有新的弹幕进来
 * `append`：追加一批需要播放的数据
 * `publish`：立即发布一条新的弹幕
-
-#### BarrageItem
-
-* `remove`：销毁自己
 
 ### 静态方法
 

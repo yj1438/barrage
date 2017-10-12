@@ -1,5 +1,6 @@
 /**
  * 获取当前浏览器环境的 transitionEvent 事件
+ * @private
  * @return {string} transitionEvent 事件名称
  * @example
  * var transitionEvent = whichTransitionEndEvent();
