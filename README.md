@@ -168,32 +168,3 @@ barrage.publish({type: 0, user: '我自己', text: '这是我的弹幕'});
 ### 静态方法
 
 * `transitionendEvent`：获取当前环境的 transitionend 事件名称，eg: `luna.Barrage.transitionendEvent()`
-
----
-
-<style>
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	empty-cells: show;
-	border: 1px solid #e9e9e9;
-	width: 100%;
-	margin: 8px 0 16px
-}
-
-table th {
-	white-space: nowrap;
-	color: #5c6b77;
-	font-weight: 600
-}
-
-table td,table th {
-	border: 1px solid #e9e9e9;
-	padding: 8px 16px;
-	text-align: left
-}
-
-table th {
-	background: #f7f7f7
-}
-</style>

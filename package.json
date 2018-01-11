@@ -21,7 +21,7 @@
   "scripts": {
     "dev": "webpack-dev-server --devtool source-map --inline --hot --open --host 0.0.0.0",
     "build": "webpack --progress --colors",
-    "doc": "rm -rf docs && jsdoc README.md src -r -d docs -t node_modules/docdash",
+    "doc": "rm -rf docs && jsdoc -c ./jsdoc.config.json -d docs",
     "qtdeploy": "qtdeploy all",
     "lint": "eslint src/**",
     "test": "mocha ./tests --recursive --require ./tests/setup.js",
@@ -32,6 +32,7 @@
     "prepublish": "npm run build && npm run ci"
   },
   "devDependencies": {
+    "@alipay/luna-docdash": "^0.5.0",
     "@alipay/qingting-deploy": "^0.3.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^6.4.1",
