@@ -58,35 +58,37 @@ BarrageTrack.prototype.go = function (barrageItem) {
   const fixedTop = this._getItemFixTop();
   ele.style.top = `${fixedTop}px`;
   this.wrapper.container.appendChild(barrageItem.ele);
-  // 跑道长度
-  const width = this.wrapper.size.width;
-  // 运动总长度 跑道长度 + 元素自己长度
-  const animLong = ele.offsetWidth + width;
-  // 运动时长
-  const animTime = animLong / options.speed;
-  ele.style.transition = `all ${animTime || 0}s linear`;
-  ele.style.webkitTransform = `all ${animTime || 0}s linear`;
-  // 动画结束后删除自身
-  const transitionEvent = transitionendEvent();
-  if (transitionEvent) {
-    const endEvtFn = function () {
-      ele.remove();
-      ele.removeEventListener(transitionEvent, endEvtFn, false);  // 销毁事件
-    };
-    ele.addEventListener(transitionEvent, endEvtFn, false);
-  } else {
-    // 20 ms 为容错间隔时间
-    setTimeout(() => {
-      ele.remove();
-    }, (animTime * 1000) + 20);
-  }
-  window.requestAnimationFrame(() => {
-    ele.style.transform = `translateX(-${width}px)`;
-    ele.style.webkitTransform = `translateX(-${width}px)`;
-  });
-  // 此元素独占时间 / 下次跑道空出来的时间：元素运动自身长度 + 间隙最近两元素间隔时间
-  const useTime = (ele.offsetWidth / options.speed) + options.intervalTime;
-  this.runningEndTime = (new Date().getTime()) + (useTime * 1000);
+  setTimeout(() => {
+    // 跑道长度
+    const width = this.wrapper.size.width;
+    // 运动总长度 跑道长度 + 元素自己长度
+    const animLong = ele.offsetWidth + width;
+    // 运动时长
+    const animTime = animLong / options.speed;
+    ele.style.transition = `all ${animTime || 0}s linear`;
+    ele.style.webkitTransform = `all ${animTime || 0}s linear`;
+    // 动画结束后删除自身
+    const transitionEvent = transitionendEvent();
+    if (transitionEvent) {
+      const endEvtFn = function () {
+        ele.remove();
+        ele.removeEventListener(transitionEvent, endEvtFn, false);  // 销毁事件
+      };
+      ele.addEventListener(transitionEvent, endEvtFn, false);
+    } else {
+      // 17 ms 为容错间隔时间
+      setTimeout(() => {
+        ele.remove();
+      }, (animTime * 1000) + 17);
+    }
+    window.requestAnimationFrame(() => {
+      ele.style.transform = `translateX(-${width}px)`;
+      ele.style.webkitTransform = `translateX(-${width}px)`;
+    });
+    // 此元素独占时间 / 下次跑道空出来的时间：元素运动自身长度 + 间隙最近两元素间隔时间
+    const useTime = (ele.offsetWidth / options.speed) + options.intervalTime;
+    this.runningEndTime = (new Date().getTime()) + (useTime * 1000);
+  }, 17);
 };
 
 /**
