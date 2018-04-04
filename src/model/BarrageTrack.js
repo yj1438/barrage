@@ -82,8 +82,8 @@ BarrageTrack.prototype.go = function (barrageItem) {
       }, (animTime * 1000) + 17);
     }
     window.requestAnimationFrame(() => {
-      ele.style.transform = `translateX(-${width}px)`;
-      ele.style.webkitTransform = `translateX(-${width}px)`;
+      ele.style.webkitTransform = `translate3d(-${width}px,0,0)`;
+      ele.style.transform = `translate3d(-${width}px,0,0)`;
     });
     // 此元素独占时间 / 下次跑道空出来的时间：元素运动自身长度 + 间隙最近两元素间隔时间
     const useTime = (ele.offsetWidth / options.speed) + options.intervalTime;
