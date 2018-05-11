@@ -59,6 +59,8 @@ Barrage.defaultOptions = {
   maxDom: 0,                  // 同时允许最多的 dom 元素
   itemMaker: null,            // function 弹幕元素生成器，data 为对象列表时，此项必须 function (item) { this === item }
   onClickItem: function (evt, item) {},
+  onDataEmpty: function () {},
+  onAllTrackEmpty: function () {},
 };
 
 /**
@@ -81,6 +83,13 @@ Barrage.prototype._getEmptyTrack = function () {
     return this.tracks[index];
   }
   return null;
+};
+
+/**
+ * 判断所有跑道都空了
+ */
+Barrage.prototype._isAllTrackEmpty = function () {
+  return this.tracks.every(track => track.emptyTime < new Date().getTime());
 };
 
 /**
@@ -114,6 +123,10 @@ Barrage.prototype.start = function () {
   const options = this.options;
   const animationFrameLoop = () => {
     this.intervalIndex = window.requestAnimationFrame(() => {
+      // 定义1s的交错时间
+      this.nextTimeoutIndex = window.setTimeout(() => {
+        animationFrameLoop();
+      }, 1000 * Math.random());
       let canRun = true;
       if (options.maxDom) {
         const barrageItems = this.container.querySelectorAll('.barrage-item');
@@ -128,18 +141,21 @@ Barrage.prototype.start = function () {
       if (!useTrack) {
         canRun = false;
       }
-      if (canRun && this.data && this.data.length > 0) {
-        const outItem = this.data.splice(0, 1)[0];
-        const barrageItem = new BarrageItem(outItem, options);
-        useTrack.go(barrageItem);
-        if (this.options.isLoop) {
-          this.data.push(outItem);
+      if (canRun) {
+        if (this.data.length > 0) {
+          const outItem = this.data.splice(0, 1)[0];
+          const barrageItem = new BarrageItem(outItem, options);
+          useTrack.go(barrageItem);
+          if (this.options.isLoop) {
+            this.data.push(outItem);
+          }
+        } else {
+          this.options.onDataEmpty();
+          if (this._isAllTrackEmpty()) {
+            this.options.onAllTrackEmpty();
+          }
         }
       }
-      // 定义1s的交错时间
-      this.nextTimeoutIndex = window.setTimeout(() => {
-        animationFrameLoop();
-      }, 1000 * Math.random());
     });
   };
   animationFrameLoop();

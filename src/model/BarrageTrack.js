@@ -13,6 +13,7 @@ const BarrageTrack = function (barrage, i) {
   // this.top = this._getTop();         // 设定此跑道的位置（Top）
   this.width = barrage.size.width;      // 跑道长度
   this.runningEndTime = new Date().getTime() + (Math.random() * 5 * 1000);   // 跑道空闲时刻
+  this.emptyTime = new Date().getTime();
 };
 
 /**
@@ -87,7 +88,10 @@ BarrageTrack.prototype.go = function (barrageItem) {
     });
     // 此元素独占时间 / 下次跑道空出来的时间：元素运动自身长度 + 间隙最近两元素间隔时间
     const useTime = (ele.offsetWidth / options.speed) + options.intervalTime;
+    // 此元素空出跑道时间
     this.runningEndTime = (new Date().getTime()) + (useTime * 1000);
+    // 此元素完全跑出跑道时间
+    this.emptyTime = (new Date().getTime()) + (animTime * 1000);
   }, 17);
 };
 

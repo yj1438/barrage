@@ -143,8 +143,8 @@
           onClickItem: function       // 点击弹幕元素事件
         */
         var barrage = new window.luna.Barrage('#barrage', {
-          data: makeTestData(20, '😂'),
-          isLoop: true,
+          data: makeTestData(5, '😂'),
+          isLoop: false,
           rowCount: 5,
           intervalTime: 1,
           speed: 200,       // 建议不要超过200
@@ -160,15 +160,23 @@
           },
           onClickItem: function (evt, item) {
             item.remove();
+          },
+          onDataEmpty: function () {
+            console.warn('弹幕空了', Date.now());
+          },
+          onAllTrackEmpty: function () {
+            console.warn('都跑完了', Date.now());
+            barrage.stop();
+            document.getElementById('barrage').innerHTML = '都跑完了:' + Date.now();
           }
         });
         // 开启
         barrage.start();
         // 模板 15s 后跟进一批数据
-        setTimeout(function () {
-          barrage.append(makeTestData(10, '😱'));
+        // setTimeout(function () {
+        //   barrage.append(makeTestData(10, '😱'));
           // barrage.stop();
-        }, 15000);
+        // }, 15000);
 
         // 实时发弹幕
         document.getElementById('publish').addEventListener('click', function () {
