@@ -141,7 +141,14 @@ barrage.publish({type: 0, user: '我自己', text: '这是我的弹幕'});
 
 详情请见 [demo](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tree/master/demo/advance/index.html)
 
-### 配置
+### 参数
+
+`new Barrage(ele, options)`
+
+* ele: **必填**，弹幕容器，支持两种形式，1) 选择符，如 `#barrage`；2) dom 对象，如可以直接传入 `document.getElementById('#barrage')`；
+* options: **选填**，见下详情。
+
+### options 配置
 
 | 参数 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |
@@ -155,6 +162,10 @@ barrage.publish({type: 0, user: '我自己', text: '这是我的弹幕'});
 | maxDom | number | 0 | 最多同时显示的弹幕数<br/>`0`为不限制 |
 | itemMaker | function (itemData) |  | 自定义弹幕元素的生成方法，`itemData` 为弹幕元素数据。如果不设置默认会将 itemData.toString，参照 [综合用法](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tree/master/demo/advance/index.html) |
 | onClickItem | function (evt, item) |  | 点击弹幕元素事件<br/>`evt`：事件对象，<br/>`item`：封装的元素对象，见 `BarrageItem` 方法<br/>`item.ele`：元素 dom<br/>`remove`：销毁自己 |
+| onDataEmpty | function () |  | 当前弹幕 data 无数据时触发，仅在 `isLoop: false` 时有效 |
+| onAllTrackEmpty | function () |  | 所有弹幕 dom 都滚动结束后触发，仅在 `isLoop: false` 时有效 |
+
+> 注意：弹幕组件 start 状态下会一直监听 data，即使为空也行，所以 `onDataEmpty` 和 `onAllTrackEmpty` 回调会不断触发。
 
 ### 方法
 

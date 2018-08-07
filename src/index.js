@@ -23,7 +23,11 @@ const Barrage = function (ele, opt) {
   if (!_ele) {
     throw new Error('Barrage container is not found!');
   }
-  _ele.style.position = 'relative';
+  // 弹幕元素是绝对定位，需要给容器添加 position
+  const style = window.getComputedStyle(_ele);
+  if (style.position !== 'relative' && style.position !== 'absolute' && style.position !== 'fixed') {
+    _ele.style.position = 'relative';
+  }
   _ele.style.overflow = 'hidden';
   this.container = _ele;
   this.options = Object.assign({}, Barrage.defaultOptions, opt || {});
