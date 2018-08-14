@@ -4,6 +4,7 @@ const BarrageItem = require('./model/BarrageItem');
 const sizeUtil = require('./utils/size');
 const transitionendEvent = require('./utils/transitionendEvent');
 const isInWindow = require('./utils/isInWindow');
+const numberPool = require('./utils/numberPool');
 
 /**
  * 弹幕主构造方法
@@ -36,10 +37,12 @@ const Barrage = function (ele, opt) {
     width: sizeUtil.getWidth(this.container),
     height: sizeUtil.getHeight(this.container),
   };
+  // 给每个跑道定义一个随机的开始值
+  numberPool.init(this.options.rowCount);
   // 初始化跑道
   this.tracks = new Array(...new Array(this.options.rowCount))
     .map((item, i) => {
-      const barrageItem = new BarrageTrack(this, i);
+      const barrageItem = new BarrageTrack(this, i, numberPool.get());
       barrageItem.wrapper = this;
       return barrageItem;
     });
@@ -130,7 +133,7 @@ Barrage.prototype.start = function () {
       // 定义1s的交错时间
       this.nextTimeoutIndex = window.setTimeout(() => {
         animationFrameLoop();
-      }, 1000 * Math.random());
+      }, 16 * 2);
       let canRun = true;
       if (options.maxDom) {
         const barrageItems = this.container.querySelectorAll('.barrage-item');

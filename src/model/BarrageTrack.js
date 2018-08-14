@@ -4,7 +4,7 @@ const transitionendEvent = require('../utils/transitionendEvent');
  * 弹幕跑道
  * @private
  */
-const BarrageTrack = function (barrage, i) {
+const BarrageTrack = function (barrage, i, startTime) {
   this.wrapper = barrage.container;
   this.options = barrage.options;
   this.index = i;                       // 弹幕跑道的索引值
@@ -12,7 +12,7 @@ const BarrageTrack = function (barrage, i) {
   this.height = barrage.size.height / barrage.options.rowCount;     // 单一跑道的宽度
   // this.top = this._getTop();         // 设定此跑道的位置（Top）
   this.width = barrage.size.width;      // 跑道长度
-  this.runningEndTime = new Date().getTime() + (Math.random() * 5 * 1000);   // 跑道空闲时刻
+  this.runningEndTime = new Date().getTime() + startTime * 800;   // 跑道空闲时刻
   this.emptyTime = new Date().getTime();
 };
 
@@ -72,14 +72,14 @@ BarrageTrack.prototype.go = function (barrageItem) {
     const transitionEvent = transitionendEvent();
     if (transitionEvent) {
       const endEvtFn = function () {
-        ele.remove();
+        barrageItem.remove();
         ele.removeEventListener(transitionEvent, endEvtFn, false);  // 销毁事件
       };
       ele.addEventListener(transitionEvent, endEvtFn, false);
     } else {
       // 17 ms 为容错间隔时间
       setTimeout(() => {
-        ele.remove();
+        barrageItem.remove();
       }, (animTime * 1000) + 17);
     }
     window.requestAnimationFrame(() => {
