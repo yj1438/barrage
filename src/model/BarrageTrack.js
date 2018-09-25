@@ -1,5 +1,7 @@
 const randomFromRang = require('../utils/randomFromRang');
 const transitionendEvent = require('../utils/transitionendEvent');
+
+const ONE_FRAME_TIME = 17;
 /**
  * 弹幕跑道
  * @private
@@ -60,14 +62,17 @@ BarrageTrack.prototype.go = function (barrageItem) {
   ele.style.top = `${fixedTop}px`;
   this.wrapper.container.appendChild(barrageItem.ele);
   setTimeout(() => {
+    // 
+    ele.style.right = -ele.offsetWidth + 'px';
+    ele.style.visibility = 'visible';
     // 跑道长度
     const width = this.wrapper.size.width;
     // 运动总长度 跑道长度 + 元素自己长度
     const animLong = ele.offsetWidth + width;
     // 运动时长
     const animTime = animLong / options.speed;
-    ele.style.transition = `all ${animTime || 0}s linear`;
-    ele.style.webkitTransform = `all ${animTime || 0}s linear`;
+    ele.style.webkitTransition = `transform ${animTime || 0}s linear`;
+    ele.style.transition = `transform ${animTime || 0}s linear`;
     // 动画结束后删除自身
     const transitionEvent = transitionendEvent();
     if (transitionEvent) {
@@ -80,19 +85,21 @@ BarrageTrack.prototype.go = function (barrageItem) {
       // 17 ms 为容错间隔时间
       setTimeout(() => {
         barrageItem.remove();
-      }, (animTime * 1000) + 17);
+      }, (animTime * 1000) + ONE_FRAME_TIME);
     }
-    window.requestAnimationFrame(() => {
-      ele.style.webkitTransform = `translate3d(-${width}px,0,0)`;
-      ele.style.transform = `translate3d(-${width}px,0,0)`;
-    });
+    setTimeout(() => {
+    // window.requestAnimationFrame(() => {
+      ele.style.webkitTransform = `translate(-${animLong}px,0)`;
+      ele.style.transform = `translate(-${animLong}px,0)`;
+    // });
+    }, ONE_FRAME_TIME);
     // 此元素独占时间 / 下次跑道空出来的时间：元素运动自身长度 + 间隙最近两元素间隔时间
     const useTime = (ele.offsetWidth / options.speed) + options.intervalTime;
     // 此元素空出跑道时间
     this.runningEndTime = (new Date().getTime()) + (useTime * 1000);
     // 此元素完全跑出跑道时间
     this.emptyTime = (new Date().getTime()) + (animTime * 1000);
-  }, 17);
+  }, ONE_FRAME_TIME);
 };
 
 /**

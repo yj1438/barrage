@@ -42,9 +42,9 @@ const Barrage = function (ele, opt) {
   // 初始化跑道
   this.tracks = new Array(...new Array(this.options.rowCount))
     .map((item, i) => {
-      const barrageItem = new BarrageTrack(this, i, numberPool.get());
-      barrageItem.wrapper = this;
-      return barrageItem;
+      const barrageTrack = new BarrageTrack(this, i, numberPool.get());
+      barrageTrack.wrapper = this;
+      return barrageTrack;
     });
   // 初始化状态 1：进行中；0：人工停止；-1：非人工停止(如：页面压入后台)
   this.hasStart = -1;

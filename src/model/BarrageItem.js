@@ -31,9 +31,11 @@ BarrageItem.prototype._createElement = function (text) {
   ele.id = `barrage_item_${new Date().getTime()}`;
   ele.style.position = 'absolute';
   ele.style.right = 0;
+  ele.style.visibility = 'hidden';
   ele.style.whiteSpace = 'nowrap';
-  ele.style.transform = 'translateX(100%)';
-  ele.style.webkitTransform = 'translateX(100%)';
+  ele.style.willChange = 'transform';
+  // ele.style.transform = 'translate(100%, 0)';
+  // ele.style.webkitTransform = 'translate(100%, 0)';
   // 事件绑定，在这里直接用 on 来绑定元素事件，保证事件的销毁和元素一致
   const self = this;
   ele.onclick = function (event) {
