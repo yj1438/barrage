@@ -71,8 +71,8 @@ BarrageTrack.prototype.go = function (barrageItem) {
     const animLong = ele.offsetWidth + width;
     // 运动时长
     const animTime = animLong / options.speed;
-    ele.style.webkitTransition = `transform ${animTime || 0}s linear`;
-    ele.style.transition = `transform ${animTime || 0}s linear`;
+    ele.style.webkitTransition = `all ${animTime || 0}s linear`;
+    ele.style.transition = `all ${animTime || 0}s linear`;
     // 动画结束后删除自身
     const transitionEvent = transitionendEvent();
     if (transitionEvent) {

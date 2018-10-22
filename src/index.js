@@ -40,7 +40,10 @@ const Barrage = function (ele, opt) {
   // 给每个跑道定义一个随机的开始值
   numberPool.init(this.options.rowCount);
   // 初始化跑道
-  this.tracks = new Array(...new Array(this.options.rowCount))
+  const initArr = [];
+  let n = this.options.rowCount;
+  while (n--) initArr[n] = 0;
+  this.tracks = initArr
     .map((item, i) => {
       const barrageTrack = new BarrageTrack(this, i, numberPool.get());
       barrageTrack.wrapper = this;
