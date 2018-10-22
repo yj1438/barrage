@@ -190,7 +190,7 @@ Barrage.prototype.append = function (dataArr) {
 
 /**
  * 实时发布
- * @param {any} data 
+ * @param {any} data
  */
 Barrage.prototype.publish = function (data) {
   this.data = [data, ...this.data];

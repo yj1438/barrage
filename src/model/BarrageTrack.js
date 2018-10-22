@@ -52,7 +52,7 @@ BarrageTrack.prototype._getItemFixTop = function () {
 /**
  * 某一弹幕元素起跑
  * @private
- * @param {any} barrageItem 
+ * @param {any} barrageItem
  */
 BarrageTrack.prototype.go = function (barrageItem) {
   const ele = barrageItem.ele;
@@ -62,7 +62,7 @@ BarrageTrack.prototype.go = function (barrageItem) {
   ele.style.top = `${fixedTop}px`;
   this.wrapper.container.appendChild(barrageItem.ele);
   setTimeout(() => {
-    // 
+    //
     ele.style.right = -ele.offsetWidth + 'px';
     ele.style.visibility = 'visible';
     // 跑道长度
@@ -105,7 +105,7 @@ BarrageTrack.prototype.go = function (barrageItem) {
 /**
  * 获取 barrage 配置项
  * @private
- * @return {object} options 配置 
+ * @return {object} options 配置
  */
 BarrageTrack.prototype.getOptions = function () {
   return this.wrapper.options;

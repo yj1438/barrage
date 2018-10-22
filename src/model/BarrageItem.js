@@ -1,7 +1,7 @@
 /**
  * 弹幕元素对象
  * @private
- * @param {any} data 元素数据，简单情况下是字符串 
+ * @param {any} data 元素数据，简单情况下是字符串
  * @param {object} options 相关配置
  *        itemClass: 元素对象的自定义 class
  *        itemMaker: 元素dom的睡在定义生成器
