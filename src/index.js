@@ -50,7 +50,7 @@ const Barrage = function (ele, opt) {
       return barrageTrack;
     });
   // 初始化状态 1：进行中；0：人工停止；-1：非人工停止(如：页面压入后台)
-  this.hasStart = -1;
+  this.hasStart = 0;
   this._bindEvent();
 };
 
@@ -111,7 +111,7 @@ Barrage.prototype._bindEvent = function () {
   // ant bridge 页面压入后台时停止跑弹幕
   document.addEventListener('pause', (e) => {
     if (this.hasStart === 1) {
-      this.stop();
+      this.stop(true);
     }
   }, false);
   // 页面恢复运行时开始跑弹幕

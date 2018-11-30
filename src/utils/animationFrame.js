@@ -34,7 +34,7 @@ function animationFrameClosure () {
     default:
       break;
   }
-  console.log(`当前 requestAnimationFrame 使用：${animationFrame}`);
+  // console.log(`当前 requestAnimationFrame 使用：${animationFrame}`);
   // 兼容方式，用 settimeout
   if (!window.requestAnimationFrame) {
     window.requestAnimationFrame = function (callback) {
