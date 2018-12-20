@@ -155,7 +155,7 @@ barrage.publish({type: 0, user: '我自己', text: '这是我的弹幕'});
 | data | array:any | [] | 弹幕数据初始化列表，在 `start` 后，会自动从中一一取出进行播放，data 数组中的元素值会做为参数传入 `itemMaker` |
 | isLoop | boolean | false | 是否循环播放 |
 | rowCount | number | 4 | 弹幕元素行数，根据自己的区域大小，自行调整 |
-| intervalTime | number | 2 | 前后两个弹幕最短间隔时间(s) |
+| intervalTime | number / array:[min, max] | 2 | `number`: 前后两个弹幕最短间隔时间(s)；<br/>`[min, max]`，eg：`[0.5, 2]`，在这个范围内取随机值。 |
 | speed | number | 150 | 弹幕行进速度(px/s)，建议不要超过200 |
 | positionFix | number / array:[min, max] | 0 | 弹幕位置(高度)修正，根据实际情况进行调整。<br/>`number` 可以为负值，相当于弹幕元素 dom 的 `margin-top`。<br/>`[min, max]`，eg：`[-20, 10]`，在这个范围内取随机值。<br/>你想要参差不齐的弹幕，就设置 `[min, max]` 吧 |
 | itemClass | string | '' | 自定义弹幕元素 dom class |
