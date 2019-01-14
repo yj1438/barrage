@@ -1,16 +1,14 @@
 {
-  "name": "@alipay/luna-barrage",
+  "name": "barrage",
   "version": "0.1.9",
-  "author": "yj138290",
+  "author": "yj1438",
   "description": "弹幕组件",
   "keywords": [
-    "支付宝",
-    "luna",
     "弹幕"
   ],
   "repository": {
     "type": "git",
-    "url": "git@gitlab.alipay-inc.com:luna-component/luna-barrage.git"
+    "url": "git@github.com:yj1438/barrage.git"
   },
   "main": "dist/index.js",
   "files": [
@@ -21,8 +19,6 @@
   "scripts": {
     "dev": "webpack-dev-server --devtool source-map --inline --hot --open --host 0.0.0.0",
     "build": "webpack --progress --colors",
-    "doc": "rm -rf docs && jsdoc -c ./node_modules/@alipay/luna-docdash/jsdoc.config.json -d docs",
-    "qtdeploy": "qtdeploy all",
     "lint": "eslint src/**",
     "test": "mocha ./tests --recursive --require ./tests/setup.js",
     "test-cov": "istanbul cover _mocha -- ./tests --recursive --require ./tests/setup.js",
@@ -32,8 +28,6 @@
     "prepublish": "npm run build && npm run ci"
   },
   "devDependencies": {
-    "@alipay/luna-docdash": "^0.5.0",
-    "@alipay/qingting-deploy": "^0.3.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^6.4.1",
     "babel-plugin-transform-object-assign": "^6.22.0",

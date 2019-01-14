@@ -92,15 +92,6 @@
   </div>
   <div style="height: 120vh"></div>
 
-  <script>
-    window.luna = {
-      config: {
-        appId: '@alipay/luna-barrage',
-        appName: '@alipay/luna-barrage'
-      }
-    };
-  </script>
-  <!-- 会在全局变量luna中引入组件barrage -->
   <script src="../../dist/index.debug.js"></script>
 
   <script type="text/javascript">
@@ -144,7 +135,7 @@
           itemMaker: null,            // function 弹幕元素生成器，data 为对象列表时，此项必须 function (item) { this === item }
           onClickItem: function       // 点击弹幕元素事件
         */
-        var barrage = new window.luna.Barrage('#barrage', {
+        var barrage = new window.Barrage('#barrage', {
           data: makeTestData(5, '😂'),
           isLoop: true,
           rowCount: 5,
@@ -202,9 +193,7 @@
       }
     };
 
-    window.AlipayJSBridge ? main.init() : document.addEventListener('AlipayJSBridgeReady', function () {
-      main.init();
-    });
+    main.init()
   </script>
 </body>
 </html>

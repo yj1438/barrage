@@ -1,18 +1,17 @@
 
 
-# luna-barrage
+# barrage
 
 > 弹幕组件
 
 ## 查看 demo
 
-![](https://gw.alipayobjects.com/zos/rmsportal/UzRnCcXrnRulGCvgZqeP.png)
+```js
+$ npm i
+$ npm run dev
+```
 
-![](https://gw.alipayobjects.com/zos/rmsportal/vEsoigqOGrYWrrPvZLDF.gif)
-
-### demo url
-
-[http://site.alipay.net/luna-component/luna-barrage/demo/index.html](http://site.alipay.net/luna-component/luna-barrage/demo/index.html)
+`http://0.0.0.0:8080/demo/`
 
 ## 特点
 
@@ -24,36 +23,10 @@
   - 优先使用 requestAnimationFrame 和 transitionEvent，自动降级，保证浏览器最好状态的性能支持
   - 可控制显示的元素最大数量，弹幕元素离开屏幕可视区后自动销毁
   - 弹幕区域不在屏幕可视区内、页面未激活时，会自行停止跑弹幕
-  - 页面被压栈或压入后台，自行停止跑弹幕（仅限手机钱包 app 内）
 
 ## 引用方法
 
-### 方法 1
-
-作为依赖引用，这也是推荐的做法
-
-``` bash
-tnpm install @alipay/luna-barrage --save
-```
-
-js 调用
-
-``` js
-var Barrage = require('@alipay/luna-barrage');
-```
-
-### 方法 2
-
-也可以直接引用线上 cdn 地址（版本号 x.x.x 见[TAGS](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tags)）：
-
-* 压缩版：https://as.alipayobjects.com/g/luna-component/luna-barrage/0.1.1/index.js
-* 未压缩版：https://as.alipayobjects.com/g/luna-component/luna-barrage/0.1.1/index.debug.js
-
-js 调用 `luna.Barrage`
-
-## API文档
-
-[http://site.alipay.net/luna-component/luna-barrage/docs/index.html](http://site.alipay.net/luna-component/luna-barrage/docs/index.html)
+> 目前还未发布到 npm，只能手动取代码，或引用 `dist/index.js` 文件
 
 ## 使用方法
 
@@ -69,7 +42,7 @@ var barrage = new Barrage('#barrage');
 barrage.start();
 ```
 
-更多用法请见 [demo](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tree/master/demo/simple/index.html)
+更多用法请见 [/demo/simple/index.html]
 
 #### 2、综合使用
 
@@ -139,7 +112,7 @@ barrage.append([{type: 1, user: '小张', text: '这是一条弹幕'}, {type: 1,
 barrage.publish({type: 0, user: '我自己', text: '这是我的弹幕'});
 ```
 
-详情请见 [demo](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tree/master/demo/advance/index.html)
+详情请见 [/demo/advance/index.html]
 
 ### 参数
 
@@ -160,7 +133,7 @@ barrage.publish({type: 0, user: '我自己', text: '这是我的弹幕'});
 | positionFix | number / array:[min, max] | 0 | 弹幕位置(高度)修正，根据实际情况进行调整。<br/>`number` 可以为负值，相当于弹幕元素 dom 的 `margin-top`。<br/>`[min, max]`，eg：`[-20, 10]`，在这个范围内取随机值。<br/>你想要参差不齐的弹幕，就设置 `[min, max]` 吧 |
 | itemClass | string | '' | 自定义弹幕元素 dom class |
 | maxDom | number | 0 | 最多同时显示的弹幕数<br/>`0`为不限制 |
-| itemMaker | function (itemData) |  | 自定义弹幕元素的生成方法，`itemData` 为弹幕元素数据。如果不设置默认会将 itemData.toString，参照 [综合用法](http://gitlab.alipay-inc.com/luna-component/luna-barrage/tree/master/demo/advance/index.html) |
+| itemMaker | function (itemData) |  | 自定义弹幕元素的生成方法，`itemData` 为弹幕元素数据。如果不设置默认会将 itemData.toString，参照 [/demo/advance/index.html]|
 | onClickItem | function (evt, item) |  | 点击弹幕元素事件<br/>`evt`：事件对象，<br/>`item`：封装的元素对象，见 `BarrageItem` 方法<br/>`item.ele`：元素 dom<br/>`remove`：销毁自己 |
 | onDataEmpty | function () |  | 当前弹幕 data 无数据时触发，仅在 `isLoop: false` 时有效 |
 | onAllTrackEmpty | function () |  | 所有弹幕 dom 都滚动结束后触发，仅在 `isLoop: false` 时有效 |
@@ -178,4 +151,4 @@ barrage.publish({type: 0, user: '我自己', text: '这是我的弹幕'});
 
 ### 静态方法
 
-* `transitionendEvent`：获取当前环境的 transitionend 事件名称，eg: `luna.Barrage.transitionendEvent()`
+* `transitionendEvent`：获取当前环境的 transitionend 事件名称，eg: `Barrage.transitionendEvent()`

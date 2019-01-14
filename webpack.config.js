@@ -16,7 +16,7 @@ var config = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist',
     filename: 'index.debug.js',
-    library: ['luna', '[name]'],
+    library: ['Barrage'],
     libraryTarget: 'umd'
   },
   plugins: [

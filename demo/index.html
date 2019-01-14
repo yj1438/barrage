@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>demo</title>
+  <title>Barrage DEMO</title>
 
   <meta content="yes" name="apple-mobile-web-app-capable"/>
   <meta content="yes" name="apple-touch-fullscreen"/>
@@ -11,18 +11,6 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
 
   <link href="https://a.alipayobjects.com/g/antui/antui/10.0.12/rem/antui.css" rel="stylesheet"/>
-  <script>
-  // !(function(){
-  //   if(window.top != window.self){
-  //     window.top.location.replace(window.self.location.href);
-  //   }
-  //   if (navigator.userAgent.toLowerCase().indexOf("alipayclient") == -1) {
-  //     var url = encodeURIComponent(location.href);
-  //     var schame = encodeURIComponent('alipays://platformapi/startapp?appId=20000067&url=' + url);
-  //     window.location.replace('https://ds.alipay.com?scheme=' + schame);
-  //   }
-  // })();
-</script>
 </head>
 <body>
 
@@ -38,23 +26,6 @@
     </a>
   </div>
 </div>
-
-<script charset="utf-8" src="https://a.alipayobjects.com/static/fastclick/1.0.6/fastclick.min.js"></script>
-<script type="text/javascript">
-  if(navigator.userAgent.toLowerCase().indexOf("alipayclient") != -1) {
-    Array.prototype.forEach.call(document.querySelectorAll('.am-list-item'), function (item) {
-      item.addEventListener('click', function (e) {
-        e.preventDefault();
-        AlipayJSBridge.call('pushWindow', {
-          url: item.href,
-          param: {
-            pullRefresh: true
-          }
-        });
-      }, false);
-    });
-  }
-</script>
 
 </body>
 </html>

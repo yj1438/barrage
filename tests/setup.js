@@ -20,12 +20,6 @@ propagateToGlobal();
 global.setTimeout = function (callback) {
   callback && callback();
 };
-global.AlipayJSBridge = {
-  call: function (name, opts, callback) {
-    // console.log('aa');
-    // callback && callback({});
-  }
-};
 
 // 注入测试依赖
 var sinon = require('sinon');
@@ -35,12 +29,3 @@ var chai = require('chai');
 chai.use(require('sinon-chai'));
 
 global.expect = chai.expect;
-
-// 模拟业务上使用
-window.luna = {
-  config: {
-    appId: '88888888',
-    appCode: 'luna-barrage demo',
-    appName: 'luna 弹幕示例'
-  }
-};

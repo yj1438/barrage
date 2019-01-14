@@ -54,15 +54,6 @@
     <button id="publish">来一发</button>
   </div>
 
-  <script>
-    window.luna = {
-      config: {
-        appId: '@alipay/luna-barrage',
-        appName: '@alipay/luna-barrage'
-      }
-    };
-  </script>
-  <!-- 会在全局变量luna中引入组件barrage -->
   <script src="../../dist/index.debug.js"></script>
 
   <script type="text/javascript">
@@ -80,7 +71,7 @@
           itemClass: '',              // 弹幕元素 class
           itemMaker: null,            // function 弹幕元素生成器，data 为对象列表时，此项必须 function (item) { this === item }
         */
-        var barrage = new window.luna.Barrage('#barrage');
+        var barrage = new window.Barrage('#barrage');
         // 开启
         barrage.start();
 
@@ -95,9 +86,7 @@
       }
     };
 
-    window.AlipayJSBridge ? main.init() : document.addEventListener('AlipayJSBridgeReady', function () {
-      main.init();
-    });
+    main.init()
   </script>
 </body>
 </html>
